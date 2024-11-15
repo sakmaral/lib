@@ -1,12 +1,12 @@
 /// <reference types="vite/client" />
-import react from '@vitejs/plugin-react';
-import { resolve } from 'node:path';
-import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
+import react from '@vitejs/plugin-react'
+import { resolve } from 'node:path'
+import { defineConfig } from 'vite'
+import dts from 'vite-plugin-dts'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), dts()],
+  plugins: [react(), dts({ exclude: ['**/*.stories.tsx'] })],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/main.ts'),
@@ -23,4 +23,4 @@ export default defineConfig({
       },
     },
   },
-});
+})
