@@ -11,9 +11,13 @@ export default defineConfig({
   plugins: [
     react(),
     dts({
-      rollupTypes: true,
+      insertTypesEntry: true,
       tsconfigPath: './tsconfig.app.json',
       exclude: ['**/*.stories.ts', 'src/test', '**/*.test.tsx'],
+      beforeWriteFile: (filePath, content) => {
+        const newFilePath = filePath.replace('/dist/src/', '/dist/')
+        return { filePath: newFilePath, content }
+      },
     }),
   ],
   resolve: {
@@ -23,7 +27,10 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/main.ts'),
+      entry: {
+        ui: resolve(__dirname, 'src/ui/index.ts'),
+        utils: resolve(__dirname, 'src/utils/index.ts'),
+      },
       formats: ['es'],
     },
     rollupOptions: {
