@@ -1,50 +1,52 @@
-# React + TypeScript + Vite
+# @sakmaral/lib
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Library of reusable helpers and components for UI and styling in React projects**
 
-Currently, two official plugins are available:
+This is a collection of reusable React components and utility functions that help streamline your development process, increase maintainability, and improve UI consistency across projects.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
 
-## Expanding the ESLint configuration
+You can install the library using `yarn`, `npm`, or `pnpm`.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Yarn
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```sh
+yarn add @sakmaral/lib
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Npm
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```sh
+npm install @sakmaral/lib
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+
+### Pnpm
+
+```sh
+pnpm install @sakmaral/lib
+```
+
+## Components
+
+### **Box**
+
+Container that extends div
+
+| name | type              | description                                                   | example                                                            |
+| ---- | ----------------- | ------------------------------------------------------------- | ------------------------------------------------------------------ |
+| $top | Integer \| String | Margin-top property. If it's a number, it's converted to rem. | `<Box $top={20}> ... </Box>` <br /> `<Box $top="20px"> ... </Box>` |
+| ---- | ----------------- | ------------------------------------------------------------- | ------------------------------------------------------------------ |
+| $bg  | String            | Background color.                                             | `<Box $bg="lightgray"> ... </Box>`                                 |
+
+### **Text**
+
+A styled p component for text that supports dynamic font sizing, line height, color, font weight, and more. It is fully customizable through props
+
+### **IsDesktop**
+
+A component that hides its children on screens smaller than sm breakpoint (i.e., mobile and tablet-sized screens) and shows them on desktop-sized screens. You can also customize the display property for the component.
+
+### **IsMobile**
+
+A component that hides its children on screens larger than sm breakpoint (i.e., desktop-sized screens).
