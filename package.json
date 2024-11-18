@@ -1,12 +1,15 @@
 {
   "name": "@sakmaral/lib",
   "private": false,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "module": "./dist/main.js",
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "types": "./dist/main.d.ts",
   "exports": {
     ".": "./dist/main.js",
@@ -27,7 +30,8 @@
     "stylelint:fix": "stylelint **/*.css --fix",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "vitest"
+    "test": "vitest",
+    "release": "pnpm run build &&  changeset publish"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -35,6 +39,7 @@
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.9",
     "@chromatic-com/storybook": "^3.2.2",
     "@eslint/js": "^9.13.0",
     "@storybook/addon-essentials": "^8.4.4",
