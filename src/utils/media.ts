@@ -1,5 +1,11 @@
 import { css } from 'styled-components'
 
+type SizeNames = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
+
+export type MediaSizes<T> = {
+  [key in SizeNames]?: T
+}
+
 /**
  * Creates a media query string.
  * @param direction - Direction of the media query (e.g., 'min-width', 'max-width').
@@ -43,7 +49,7 @@ export const media = {
  */
 export const generateMediaProps = <T>(
   props: Partial<Record<keyof typeof sizes, T>>,
-  getPropsFunc: (value: T | undefined) => ReturnType<typeof css>
+  getPropsFunc: (value: T) => ReturnType<typeof css>
 ) => {
   return Object.entries(props).reduce(
     (acc, [key, value]) => {

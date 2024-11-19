@@ -2,6 +2,8 @@
 
 **Library of reusable helpers and components for UI and styling in React projects**
 
+LIBRARY IN DEV
+
 This is a collection of reusable React components and utility functions that help streamline your development process, increase maintainability, and improve UI consistency across projects.
 
 ## Installation
@@ -29,24 +31,41 @@ pnpm install @sakmaral/lib
 
 ## Components
 
-### **Box**
+#### **Box**
 
 Container that extends div
 
 | name | type              | description                                                   | example                                                            |
 | ---- | ----------------- | ------------------------------------------------------------- | ------------------------------------------------------------------ |
 | $top | Integer \| String | Margin-top property. If it's a number, it's converted to rem. | `<Box $top={20}> ... </Box>` <br /> `<Box $top="20px"> ... </Box>` |
-| ---- | ----------------- | ------------------------------------------------------------- | ------------------------------------------------------------------ |
 | $bg  | String            | Background color.                                             | `<Box $bg="lightgray"> ... </Box>`                                 |
 
-### **Text**
+#### **Text**
 
 A styled p component for text that supports dynamic font sizing, line height, color, font weight, and more. It is fully customizable through props
 
-### **IsDesktop**
+#### **IsDesktop**
 
 A component that hides its children on screens smaller than sm breakpoint (i.e., mobile and tablet-sized screens) and shows them on desktop-sized screens. You can also customize the display property for the component.
 
-### **IsMobile**
+#### **IsMobile**
 
 A component that hides its children on screens larger than sm breakpoint (i.e., desktop-sized screens).
+
+## Utils
+
+#### **formatDate**
+
+The formatDate function formats a date into a localized string based on the provided locale and options.
+
+#### **getUserLocale**
+
+The user's locale as a string (e.g., "en-US"). Defaults to "en-US" if no locale is available.
+
+#### **convertPxToUnit**
+
+Converts a pixel value to a specified CSS unit
+
+#### **formatRelativeTime**
+
+Formats a relative time value into a localized string.

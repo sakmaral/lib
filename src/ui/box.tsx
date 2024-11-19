@@ -1,26 +1,25 @@
 import styled, { css } from 'styled-components'
 import { getDimension } from '../utils/get-dimension'
+import { generateMediaProps, MediaSizes } from '../utils/media'
 
-type StrNum = string | number
-
-interface ComponentProps {
+interface Props {
   $display?: string
 
-  $width?: StrNum
-  $height?: StrNum
-  $mih?: StrNum // min-height
-  $mah?: StrNum // max-height
+  $width?: string | number
+  $height?: string | number
+  $mih?: string | number // min-height
+  $mah?: string | number // max-height
 
-  $mTop?: StrNum // margin-top
-  $mBottom?: StrNum // margin-bottom
-  $mLeft?: StrNum // margin-left
-  $mRight?: StrNum // margin-right
+  $mTop?: string | number // margin-top
+  $mBottom?: string | number // margin-bottom
+  $mLeft?: string | number // margin-left
+  $mRight?: string | number // margin-right
   $margin?: string
 
-  $pTop?: StrNum // padding-top
-  $pBottom?: StrNum // padding-bottom
-  $pLeft?: StrNum // padding-left
-  $pRight?: StrNum // padding-right
+  $pTop?: string | number // padding-top
+  $pBottom?: string | number // padding-bottom
+  $pLeft?: string | number // padding-left
+  $pRight?: string | number // padding-right
   $padding?: string
 
   $flex?: boolean
@@ -35,6 +34,7 @@ interface ComponentProps {
   $bd?: string // border
 }
 
+interface ComponentProps extends Props, MediaSizes<Props> {}
 /**
  * Generates margin and padding styles based on props.
  */
@@ -108,4 +108,5 @@ const getStyles = ({
  */
 export const Box = styled.div<ComponentProps>`
   ${(props) => getStyles(props)}
+  ${(props) => generateMediaProps(props, getStyles)}
 `
