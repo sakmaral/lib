@@ -54,13 +54,13 @@ const getMarginAndPadding = ({
   margin-bottom: ${$mBottom ? getDimension($mBottom) : 'unset'};
   margin-left: ${$mLeft ? getDimension($mLeft) : 'unset'};
   margin-right: ${$mRight ? getDimension($mRight) : 'unset'};
-  margin: ${$margin};
+  margin: ${$margin || 'unset'};
 
   padding-top: ${$pTop ? getDimension($pTop) : 'unset'};
   padding-bottom: ${$pBottom ? getDimension($pBottom) : 'unset'};
   padding-left: ${$pLeft ? getDimension($pLeft) : 'unset'};
   padding-right: ${$pRight ? getDimension($pRight) : 'unset'};
-  padding: ${$padding};
+  padding: ${$padding || 'unset'};
 `
 
 /**
@@ -85,20 +85,20 @@ const getStyles = ({
 }: ComponentProps) => css`
   position: relative;
   display: ${$flex ? 'flex' : $display || 'block'};
-  justify-content: ${$jc};
-  align-items: ${$ai};
-  flex-wrap: ${$fxw};
-  flex-direction: ${$fxd};
-  flex: ${$fx};
+  justify-content: ${$jc || 'unset'};
+  align-items: ${$ai || 'unset'};
+  flex-wrap: ${$fxw || 'unset'};
+  flex-direction: ${$fxd || 'unset'};
+  flex: ${$fx || 'unset'};
 
   width: ${$width ? getDimension($width) : 'auto'};
   height: ${$height ? getDimension($height) : 'auto'};
   min-height: ${$mih ? getDimension($mih) : 'unset'};
   max-height: ${$mah ? getDimension($mah) : 'unset'};
 
-  background: ${$bg};
-  border-radius: ${$bdrs};
-  border: ${$bd};
+  background: ${$bg || 'transparent'};
+  border-radius: ${$bdrs || 'unset'};
+  border: ${$bd || 'unset'};
 
   ${getMarginAndPadding(rest)}
 `

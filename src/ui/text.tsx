@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { getDimension } from '../utils/get-dimension'
-import { generateMediaProps, MediaSizes, sizes } from '../utils/media'
+import { generateMediaProps, MediaSizes } from '../utils/media'
 
 interface Props {
   $fz?: number | string // font-size
@@ -21,12 +21,12 @@ interface ComponentProps extends Props, MediaSizes<Props> {}
 const getStyles = ({ $fz, $lh, $color, $fw, $width, $ta, $whs, $tt }: ComponentProps) => css`
   font-size: ${$fz ? getDimension($fz) : 'inherit'};
   line-height: ${$lh ? getDimension($lh) : 'normal'};
-  color: ${$color};
-  font-weight: ${$fw};
+  color: ${$color || 'inherit'};
+  font-weight: ${$fw || 'normal'};
   width: ${$width ? getDimension($width) : 'auto'};
-  text-align: ${$ta};
-  white-space: ${$whs};
-  text-transform: ${$tt};
+  text-align: ${$ta || 'left'};
+  white-space: ${$whs || 'normal'};
+  text-transform: ${$tt || 'none'};
 `
 
 /**
