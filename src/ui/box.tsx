@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { getDimension } from '../utils/get-dimension'
-import { generateMediaProps, MediaSizes } from '../utils/media'
+import { generateMediaProps, MediaSizes, sizes } from '../utils/media'
 
 interface Props {
   $display?: string
@@ -54,13 +54,13 @@ const getMarginAndPadding = ({
   margin-bottom: ${$mBottom ? getDimension($mBottom) : 'unset'};
   margin-left: ${$mLeft ? getDimension($mLeft) : 'unset'};
   margin-right: ${$mRight ? getDimension($mRight) : 'unset'};
-  margin: ${$margin || 'unset'};
+  margin: ${$margin};
 
   padding-top: ${$pTop ? getDimension($pTop) : 'unset'};
   padding-bottom: ${$pBottom ? getDimension($pBottom) : 'unset'};
   padding-left: ${$pLeft ? getDimension($pLeft) : 'unset'};
   padding-right: ${$pRight ? getDimension($pRight) : 'unset'};
-  padding: ${$padding || 'unset'};
+  padding: ${$padding};
 `
 
 /**
@@ -85,20 +85,20 @@ const getStyles = ({
 }: ComponentProps) => css`
   position: relative;
   display: ${$flex ? 'flex' : $display || 'block'};
-  justify-content: ${$jc || 'unset'};
-  align-items: ${$ai || 'unset'};
-  flex-wrap: ${$fxw || 'unset'};
-  flex-direction: ${$fxd || 'unset'};
-  flex: ${$fx || 'unset'};
+  justify-content: ${$jc};
+  align-items: ${$ai};
+  flex-wrap: ${$fxw};
+  flex-direction: ${$fxd};
+  flex: ${$fx};
 
   width: ${$width ? getDimension($width) : 'auto'};
   height: ${$height ? getDimension($height) : 'auto'};
   min-height: ${$mih ? getDimension($mih) : 'unset'};
   max-height: ${$mah ? getDimension($mah) : 'unset'};
 
-  background: ${$bg || 'transparent'};
-  border-radius: ${$bdrs || 'unset'};
-  border: ${$bd || 'unset'};
+  background: ${$bg};
+  border-radius: ${$bdrs};
+  border: ${$bd};
 
   ${getMarginAndPadding(rest)}
 `
@@ -106,7 +106,9 @@ const getStyles = ({
 /**
  * Styled `Box` component with dynamic styles.
  */
-export const Box = styled.div<ComponentProps>`
+export const Box = styled.div.withConfig({
+  shouldForwardProp: (prop) => !Object.keys(sizes).includes(prop),
+})<ComponentProps>`
   ${(props) => getStyles(props)}
   ${(props) => generateMediaProps(props, getStyles)}
 `

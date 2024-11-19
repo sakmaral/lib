@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { getDimension } from '../utils/get-dimension'
-import { generateMediaProps, MediaSizes } from '../utils/media'
+import { generateMediaProps, MediaSizes, sizes } from '../utils/media'
 
 interface Props {
   $fz?: number | string // font-size
@@ -21,19 +21,21 @@ interface ComponentProps extends Props, MediaSizes<Props> {}
 const getStyles = ({ $fz, $lh, $color, $fw, $width, $ta, $whs, $tt }: ComponentProps) => css`
   font-size: ${$fz ? getDimension($fz) : 'inherit'};
   line-height: ${$lh ? getDimension($lh) : 'normal'};
-  color: ${$color || 'inherit'};
-  font-weight: ${$fw || 'normal'};
+  color: ${$color};
+  font-weight: ${$fw};
   width: ${$width ? getDimension($width) : 'auto'};
-  text-align: ${$ta || 'left'};
-  white-space: ${$whs || 'normal'};
-  text-transform: ${$tt || 'none'};
+  text-align: ${$ta};
+  white-space: ${$whs};
+  text-transform: ${$tt};
 `
 
 /**
  * Styled `Text` component with dynamic styles.
  */
 
-export const Text = styled.p<ComponentProps>`
+export const Text = styled.p.withConfig({
+  shouldForwardProp: (prop) => !Object.keys(sizes).includes(prop),
+})<ComponentProps>`
   ${(props) => getStyles(props)};
   ${(props) => generateMediaProps(props, getStyles)}
 `
