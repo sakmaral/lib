@@ -3,7 +3,7 @@ import { css } from 'styled-components'
 type SizeNames = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
 
 export type MediaSizes<T> = {
-  [key in SizeNames]?: T
+  [key in SizeNames]?: Partial<T>
 }
 
 /**
@@ -48,13 +48,14 @@ export const media = {
  * @returns A `css` block with generated media-specific styles.
  */
 export const generateMediaProps = <T>(
-  props: Partial<Record<keyof typeof sizes, T>>,
-  getPropsFunc: (value: T) => ReturnType<typeof css>
+  props: Partial<Record<keyof typeof sizes, Partial<T>>>,
+  getPropsFunc: (value: Partial<T>) => ReturnType<typeof css>
 ) => {
-  return Object.entries(props).reduce(
-    (acc, [key, value]) => {
-      if (value === undefined) return acc
-      const mediaQuery = media[key as keyof typeof sizes]
+  return (Object.keys(sizes) as (keyof typeof sizes)[]).reduce(
+    (acc, key) => {
+      const value = props[key]
+      if (!value) return acc
+      const mediaQuery = media[key]
       return css`
         ${acc}
         ${mediaQuery} {
