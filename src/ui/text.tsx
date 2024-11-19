@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { getDimension } from '../utils/get-dimension'
-import { generateMediaProps, MediaSizes } from '../utils/media'
+import { generateMediaProps, MediaSizes, sizes } from '../utils/media'
 
 interface Props {
   $fz?: number | string // font-size
