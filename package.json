@@ -16,6 +16,13 @@
     "./ui": "./dist/ui/index.js",
     "./utils": "./dist/utils/index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sakmaral/lib"
+  },
+  "author": "sakmaral",
+  "license": "MIT",
+  "homepage": "https://github.com/sakmaral/lib#readme",
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
